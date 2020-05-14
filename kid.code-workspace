@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "KidApi"
+		},
+		{
+			"path": "KidApp"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/bin": true,
+			"**/obj": true,
+			"**/node_modules":true
+		}
+	}
+
+}
