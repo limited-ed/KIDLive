@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+
 
 namespace KidApi.Models
 {
@@ -13,6 +15,9 @@ namespace KidApi.Models
         public string Login { get; set; }
         public string PasswordHash { get; set; }
         public int RoleId { get; set; }
+        public int DivisionId { get; set; }
+        [JsonIgnore]
+        public Division Division { get; set; }
 
   }
 }

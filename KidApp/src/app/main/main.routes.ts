@@ -8,6 +8,7 @@ const routes: Routes = [
         path: '', component: MainComponent, canActivate: [ AuthenticationGuard ],
         children: [
             { path: '',  component: HelloComponent},
+            { path: 'users', loadChildren: () => import('users/users.module').then( module => module.UsersModule) }
         ]
     }
 

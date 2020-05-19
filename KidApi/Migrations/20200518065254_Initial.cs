@@ -8,6 +8,19 @@ namespace KidApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Divisions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Divisions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -16,11 +29,18 @@ namespace KidApi.Migrations
                     UserName = table.Column<string>(nullable: true),
                     Login = table.Column<string>(nullable: true),
                     PasswordHash = table.Column<string>(nullable: true),
-                    RoleId = table.Column<int>(nullable: false)
+                    RoleId = table.Column<int>(nullable: false),
+                    DivisionId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_Divisions_DivisionId",
+                        column: x => x.DivisionId,
+                        principalTable: "Divisions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,6 +50,7 @@ namespace KidApi.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     AuthorId = table.Column<int>(nullable: false),
+                    DivisionId = table.Column<int>(nullable: false),
                     ToUserId = table.Column<int>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
@@ -41,6 +62,12 @@ namespace KidApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Divisions_DivisionId",
+                        column: x => x.DivisionId,
+                        principalTable: "Divisions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_Users_ToUserId",
                         column: x => x.ToUserId,
@@ -75,9 +102,19 @@ namespace KidApi.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_DivisionId",
+                table: "Orders",
+                column: "DivisionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_ToUserId",
                 table: "Orders",
                 column: "ToUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_DivisionId",
+                table: "Users",
+                column: "DivisionId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -90,6 +127,9 @@ namespace KidApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Divisions");
         }
     }
 }

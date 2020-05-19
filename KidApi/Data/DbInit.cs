@@ -16,9 +16,17 @@ namespace KidApi.Data
         {
             try
             {
+                if (!_context.Divisions.Any())
+                {
+                    _context.Divisions.Add( new Division { Title = "Подразделение 1"});
+                    _context.Divisions.Add( new Division { Title = "Подразделение 2"});
+                    _context.Divisions.Add( new Division { Title = "Подразделение 3"});
+                    _context.Divisions.Add( new Division { Title = "Подразделение 4"});
+                    _context.SaveChanges();
+                }
                 if (!_context.Users.Any())
                 {
-                    _context.Users.Add(new IdentityUser() { Login = "admin", PasswordHash = "password".GetHash(), UserName="Администратор", RoleId = 4});
+                    _context.Users.Add(new IdentityUser() { Login = "admin", PasswordHash = "password".GetHash(), UserName="Администратор", RoleId = 4, DivisionId = 1});
                     _context.SaveChanges();
                 }
 

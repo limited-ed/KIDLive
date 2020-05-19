@@ -16,6 +16,20 @@ namespace KidApi.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3");
 
+            modelBuilder.Entity("KidApi.Models.Division", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Divisions");
+                });
+
             modelBuilder.Entity("KidApi.Models.File", b =>
                 {
                     b.Property<int>("Id")
@@ -41,6 +55,9 @@ namespace KidApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("DivisionId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Login")
                         .HasColumnType("TEXT");
 
@@ -54,6 +71,8 @@ namespace KidApi.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DivisionId");
 
                     b.ToTable("Users");
                 });
@@ -73,6 +92,9 @@ namespace KidApi.Migrations
                     b.Property<DateTime?>("CloseDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("DivisionId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("TEXT");
 
@@ -90,6 +112,8 @@ namespace KidApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DivisionId");
+
                     b.HasIndex("ToUserId");
 
                     b.ToTable("Orders");
@@ -104,8 +128,23 @@ namespace KidApi.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("KidApi.Models.IdentityUser", b =>
+                {
+                    b.HasOne("KidApi.Models.Division", "Division")
+                        .WithMany()
+                        .HasForeignKey("DivisionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("KidApi.Models.Order", b =>
                 {
+                    b.HasOne("KidApi.Models.Division", "Division")
+                        .WithMany()
+                        .HasForeignKey("DivisionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("KidApi.Models.IdentityUser", "ToUser")
                         .WithMany()
                         .HasForeignKey("ToUserId")

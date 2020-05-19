@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KidApi.Controllers
 {
-    [Produces("application/json")]
     [Route("api/[controller]")]
     public class OrderController
     {

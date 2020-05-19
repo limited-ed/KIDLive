@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace KidApi.Models
@@ -10,6 +11,9 @@ namespace KidApi.Models
     {
         public int Id { get; set; }
         public int AuthorId { get; set; }
+        public int DivisionId { get; set; }
+        [JsonIgnore]
+        public Division Division { get; set; }
         public int ToUserId { get; set; }
         public IdentityUser ToUser { get; set; }
         public DateTime StartDate { get; set; }

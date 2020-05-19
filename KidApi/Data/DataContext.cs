@@ -19,13 +19,16 @@ namespace KidApi.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<IdentityUser> Users { get; set; }
         public DbSet<File> Files { get; set; }
+        public DbSet<Division> Divisions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<IdentityUser>().HasKey( k => k.Id );
+            modelBuilder.Entity<IdentityUser>().HasOne( o => o.Division);
             modelBuilder.Entity<File>().HasKey( k => k.Id );
             modelBuilder.Entity<Order>().HasKey( k => k.Id );
             modelBuilder.Entity<Order>().HasMany( m => m.Files).WithOne( o => o.Order);
+            modelBuilder.Entity<Order>().HasOne( o => o.Division);
         }
                 
     }

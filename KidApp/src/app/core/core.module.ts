@@ -4,12 +4,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AuthenticationGuard,
          AuthService,
+         UsersService,
+         DivisionService,
          MessageBusService,
+         AutofocusDirective,
+         ToolbarComponent
         } from './';
 
 @NgModule({
-  declarations: [],
-  exports: [],
+  declarations: [ToolbarComponent, AutofocusDirective],
+  exports: [ToolbarComponent, AutofocusDirective],
   imports: [
     CommonModule,
     HttpClientModule
@@ -30,6 +34,8 @@ export class CoreModule {
       providers: [
         AuthenticationGuard,
         AuthService,
+        UsersService,
+        DivisionService,
         MessageBusService,
       ]
     };
