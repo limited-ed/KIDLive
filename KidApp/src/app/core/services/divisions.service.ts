@@ -6,7 +6,7 @@ import { Configuration } from 'app.constants';
 
 @Injectable()
 export class DivisionService {
-    private readonly apiPath = '/api/divisions/';
+    private readonly apiPath = '/api/division/';
 
     constructor(private http: HttpClient) {
 

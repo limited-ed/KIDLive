@@ -26,7 +26,46 @@ namespace KidApi.Data
                 }
                 if (!_context.Users.Any())
                 {
-                    _context.Users.Add(new IdentityUser() { Login = "admin", PasswordHash = "password".GetHash(), UserName="Администратор", RoleId = 4, DivisionId = 1});
+                    _context.Users.Add(new IdentityUser() { Login = "admin", PasswordHash = "password".GetHash(), UserName="Администратор", RoleId = 3, DivisionId = 1});
+                    _context.Users.Add(new IdentityUser() { Login = "pto", PasswordHash = "password".GetHash(), UserName="ВЧПО", RoleId = 1, DivisionId = 1});
+                    _context.Users.Add(new IdentityUser() { Login = "to", PasswordHash = "password".GetHash(), UserName="ВЧДТ", RoleId = 2, DivisionId = 1});
+                    _context.SaveChanges();
+                }
+                if (!_context.Statuses.Any())
+                {
+                    _context.Statuses.Add( new Status() { Id=1, Title="Не прочитано"});
+                    _context.Statuses.Add( new Status() { Id=2, Title="На исполнении"});
+                    _context.Statuses.Add( new Status() { Id=3, Title="На согласовании"});
+                    _context.Statuses.Add( new Status() { Id=4, Title="Закрыто"});
+                    _context.SaveChanges();
+                }
+
+                if(!_context.Authors.Any())
+                {
+                    _context.Authors.Add( new Author() { Name = "Администратор"});
+                    _context.Authors.Add( new Author() { Name = "ВЧПО"});
+                    _context.Authors.Add( new Author() { Name = "ВЧДТ"});
+                }
+
+                if(!_context.Orders.Any())
+                {
+                    _context.Orders.Add(new Order() 
+                    {
+                        AuthorId = 3,
+                        DivisionId = 1,
+                        ToUserId = 2,
+                        StartDate = new DateTime(2020,05,20),
+                        EndDate = new DateTime(2020,06,20),
+                        OrderText = "Починить там что-то",
+                        ShortText = "Починить там что-то",
+                        StatusId = 1
+                    });
+
+                    _context.SaveChanges();
+
+                    _context.Files.Add( new File() { OrderId = 1, Extention = "pdf" } );
+                    _context.Files.Add( new File() { OrderId = 1, Extention = "doc" } );
+
                     _context.SaveChanges();
                 }
 

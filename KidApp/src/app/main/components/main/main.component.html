@@ -5,8 +5,9 @@
 
     </div>
     <div class="header-nav">
-        <a [routerLink]="'main'" class="nav-link nav-text"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">Главная</a>
-        <a [routerLink]="'users'" class="nav-link nav-text" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" *ngIf="getRole()===4">Пользователи</a>
+        <a [routerLink]="''" class="nav-link nav-text"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">Главная</a>
+        <a [routerLink]="'orders'" class="nav-link nav-text"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">Поручения</a>
+        <a [routerLink]="'users'" class="nav-link nav-text" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" *ngIf="getRole()===3">Пользователи</a>
     </div>
     <div class="header-actions">
       <clr-dropdown>

@@ -7,3 +7,6 @@ export * from './userModel';
 export * from './userEditResult';
 export * from './passwordModel';
 export * from './dialogResult';
+export * from './file';
+export * from './order';
+export * from './author';

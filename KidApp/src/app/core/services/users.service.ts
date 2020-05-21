@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class UsersService {
 
-    private readonly apiPath = '/api/users/';
+    private readonly apiPath = '/api/user/';
 
     constructor(private http: HttpClient) {
 

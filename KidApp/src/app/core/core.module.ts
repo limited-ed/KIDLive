@@ -6,9 +6,11 @@ import { AuthenticationGuard,
          AuthService,
          UsersService,
          DivisionService,
+         OrderService,
          MessageBusService,
          AutofocusDirective,
-         ToolbarComponent
+         ToolbarComponent,
+
         } from './';
 
 @NgModule({
@@ -36,6 +38,7 @@ export class CoreModule {
         AuthService,
         UsersService,
         DivisionService,
+        OrderService,
         MessageBusService,
       ]
     };

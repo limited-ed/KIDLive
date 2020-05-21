@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KidApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200518065254_Initial")]
+    [Migration("20200521073142_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,6 +17,20 @@ namespace KidApi.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3");
+
+            modelBuilder.Entity("KidApi.Models.Author", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Authors");
+                });
 
             modelBuilder.Entity("KidApi.Models.Division", b =>
                 {
@@ -103,10 +117,13 @@ namespace KidApi.Migrations
                     b.Property<string>("OrderText")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ShortText")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Status")
+                    b.Property<int>("StatusId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ToUserId")
@@ -114,11 +131,29 @@ namespace KidApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AuthorId");
+
                     b.HasIndex("DivisionId");
+
+                    b.HasIndex("StatusId");
 
                     b.HasIndex("ToUserId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("KidApi.Models.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Statuses");
                 });
 
             modelBuilder.Entity("KidApi.Models.File", b =>
@@ -141,13 +176,25 @@ namespace KidApi.Migrations
 
             modelBuilder.Entity("KidApi.Models.Order", b =>
                 {
+                    b.HasOne("KidApi.Models.Author", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("KidApi.Models.Division", "Division")
                         .WithMany()
                         .HasForeignKey("DivisionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("KidApi.Models.IdentityUser", "ToUser")
+                    b.HasOne("KidApi.Models.Status", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KidApi.Models.Author", "ToUser")
                         .WithMany()
                         .HasForeignKey("ToUserId")
                         .OnDelete(DeleteBehavior.Cascade)
