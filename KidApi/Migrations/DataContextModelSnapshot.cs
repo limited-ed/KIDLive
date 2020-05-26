@@ -115,6 +115,9 @@ namespace KidApi.Migrations
                     b.Property<string>("OrderText")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("RejectText")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ShortText")
                         .HasColumnType("TEXT");
 

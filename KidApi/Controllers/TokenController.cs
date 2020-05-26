@@ -60,22 +60,11 @@ namespace KidApi.Controllers
 
             var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.UserName),
                         new Claim("userRole", user.RoleId.ToString()) };
-            if (user.RoleId == 2) claims.Add(new Claim("Storekeeper","true"));
-            if (user.RoleId == 3) 
-            { 
-                claims.Add(new Claim("Storekeeper","true"));
-                claims.Add(new Claim("Safety","true")); 
-            }
-            if (user.RoleId == 4) 
-            {
-                claims.Add(new Claim("Storekeeper","true"));
-                claims.Add(new Claim("Safety","true"));                 
-                claims.Add(new Claim("Admin","true"));
-            }
+            claims.Add( new Claim("userId", user.Id.ToString()));
 
             var identity = new ClaimsIdentity(claims);
 
-            var token = new JwtSecurityToken(issuer: "ClothWebAPI", audience: "ClothWebAPIAudience", claims: identity.Claims,
+            var token = new JwtSecurityToken(issuer: "KIDWebAPI", audience: "KIDWebAPIAudience", claims: identity.Claims,
                   expires: DateTime.UtcNow.AddDays(7), signingCredentials: new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256));
 
             var refresh = Guid.NewGuid().ToString();

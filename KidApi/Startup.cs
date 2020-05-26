@@ -60,8 +60,8 @@ namespace KidApi
                     o.SaveToken = true;
                     o.TokenValidationParameters = new TokenValidationParameters()
                       {
-                        ValidIssuer = "ClothWebAPI",
-                        ValidAudience = "ClothWebAPIAudience",
+                        ValidIssuer = "KIDWebAPI",
+                        ValidAudience = "KIDWebAPIAudience",
                         IssuerSigningKey = new SymmetricSecurityKey(key),
                       };
                 });

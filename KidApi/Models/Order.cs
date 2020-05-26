@@ -20,6 +20,7 @@ namespace KidApi.Models
         public DateTime EndDate { get; set; }
         public string ShortText { get; set; }
         public string OrderText { get; set; }
+        public string RejectText { get; set; }
         public string Answer { get; set; }
         public List<File> Files { get; set; }
         public int StatusId { get; set; }          

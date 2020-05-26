@@ -8,3 +8,4 @@ export * from './directives/autofocus.directive';
 export * from './common/validators';
 export * from './components/toolbar/toolbar.component';
 export * from './services/order.service';
+export * from './common/map';

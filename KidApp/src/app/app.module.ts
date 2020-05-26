@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import localeRu from '@angular/common/locales/ru';
 
@@ -24,6 +25,7 @@ registerLocaleData(localeRu, 'ru');
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     CoreModule.forRoot(),
     JwtModule.forRoot({
       config: {

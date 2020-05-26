@@ -1,24 +1,24 @@
 <div class="c-content">
   <toolbar>
-    <button class="btn btn-sm btn-primary-outline" >
+    <button class="btn btn-primary" (click)="clickAdd()">
       <clr-icon shape="plus"></clr-icon>
       Добавить
     </button>
-    <button class="btn btn-sm btn-primary-outline" >
-      <clr-icon shape="plus"></clr-icon>
+    <button class="btn btn-primary" (click)="clickEdit()">
+      <clr-icon shape="pen"></clr-icon>
       Редактировать
     </button>
-    <button class="btn btn-sm btn-primary-outline" >
+    <button class="btn btn-primary">
       <clr-icon shape="plus"></clr-icon>
       Ответ
     </button>
-    <button class="btn btn-sm btn-primary-outline" >
+    <button class="btn btn-primary">
       <clr-icon shape="plus"></clr-icon>
       Сменить статус
     </button>
-    <button class="btn btn-sm btn-danger-outline">
+    <button class="btn btn-danger">
       <clr-icon shape="trash"></clr-icon> Удалить
-  </button>
+    </button>
 
   </toolbar>
 
@@ -31,15 +31,23 @@
     <clr-dg-column>Статус</clr-dg-column>
     <clr-dg-column>Закрыто</clr-dg-column>
 
-    <clr-dg-row  *clrDgItems="let order of orders" [clrDgItem]="order">
-        <clr-dg-cell>{{order.shortText}}</clr-dg-cell>
-        <clr-dg-cell>{{order.startDate | date}}</clr-dg-cell>
-        <clr-dg-cell>{{order.endDate | date}}</clr-dg-cell>
-        <clr-dg-cell>{{order.toUser.name}}</clr-dg-cell>
-        <clr-dg-cell>{{order.division.title}}</clr-dg-cell>
-        <clr-dg-cell>{{order.status.title}}</clr-dg-cell>
-        <clr-dg-cell>{{order.closeDate}}</clr-dg-cell>
-      </clr-dg-row>
+    <clr-dg-row *clrDgItems="let order of orders" [clrDgItem]="order">
+      <clr-dg-cell>{{order.shortText}}</clr-dg-cell>
+      <clr-dg-cell>{{order.startDate | date}}</clr-dg-cell>
+      <clr-dg-cell>{{order.endDate | date}}</clr-dg-cell>
+      <clr-dg-cell>{{order.toUser.name}}</clr-dg-cell>
+      <clr-dg-cell>{{order.division.title}}</clr-dg-cell>
+      <clr-dg-cell>{{order.status.title}}
+        <clr-tooltip>
+          <clr-icon clrTooltipTrigger shape="info-circle" size="16" aria-label="Uniq tooltip 1"></clr-icon>
+          <clr-tooltip-content clrPosition="top-right" clrSize="xs" *clrIfOpen>
+              <span>Lorem</span>
+          </clr-tooltip-content>
+        </clr-tooltip>
+      </clr-dg-cell>
+      <clr-dg-cell>{{order.closeDate}}</clr-dg-cell>
+    </clr-dg-row>
   </clr-datagrid>
-
 </div>
+
+<edit-dlg [(visible)]="editVisible" [divisions]="divisions" [order]="editedOrder" (orderChange)="afterEdit($event)"></edit-dlg>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService, DivisionService, MessageBusService } from 'core';
 import { Order, Division } from 'models';
 import { forkJoin } from 'rxjs';
+import { cloneObj } from 'core/common/cloneObj';
 
 
 @Component({
@@ -15,12 +16,15 @@ export class OrdersComponent implements OnInit {
   divisions: Division[];
 
   selected: Order;
+  editedOrder: Order;
+
+  editVisible = false;
 
   constructor( private orderService: OrderService, private divService: DivisionService, private messageBus: MessageBusService) { }
 
   ngOnInit(): void {
     this.messageBus.sendMessage('isLoading', true);
-    forkJoin([
+    let subscription = forkJoin([
       this.orderService.getAll(),
       this.divService.getAll()
     ]).subscribe( ([orders, divisions]) => {
@@ -29,9 +33,43 @@ export class OrdersComponent implements OnInit {
             this.divisions = divisions;
         }, error => {
             this.messageBus.sendMessage('error', 'Произошла ошибка во время загрузки данных');
-    });
+        }, () => {
+          subscription.unsubscribe();
+        });
   }
 
+  clickAdd(){
+    this.editedOrder = {
+      id: 0,
+      answer: '',
+      authorId: 0,
+      closeDate: null,
+      divisionId: 0,
+      endDate: '',
+      files: [],
+      orderText: '',
+      rejectText: '',
+      shortText: '',
+      startDate: new Date(),
+      statusId: 1,
+      toUserId: 0
 
+    } as Order;
+    this.editVisible = true;
+  }
+
+  clickEdit(){
+    this.editedOrder = cloneObj(this.selected);
+    this.editVisible = true;
+  }
+
+  afterEdit(order: Order){
+    let i = this.orders.findIndex(i => i.id === order.id);
+    if (i === -1 ){
+      this.orders.push(order);
+    } else {
+      this.orders[i] = order;
+    }
+  }
 
 }

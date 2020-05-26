@@ -36,7 +36,8 @@ namespace KidApi.Data
                     _context.Statuses.Add( new Status() { Id=1, Title="Не прочитано"});
                     _context.Statuses.Add( new Status() { Id=2, Title="На исполнении"});
                     _context.Statuses.Add( new Status() { Id=3, Title="На согласовании"});
-                    _context.Statuses.Add( new Status() { Id=4, Title="Закрыто"});
+                    _context.Statuses.Add( new Status() { Id=4, Title="Отклонено"});
+                    _context.Statuses.Add( new Status() { Id=5, Title="Закрыто"});
                     _context.SaveChanges();
                 }
 

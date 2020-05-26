@@ -82,6 +82,7 @@ namespace KidApi.Migrations
                     EndDate = table.Column<DateTime>(nullable: false),
                     ShortText = table.Column<string>(nullable: true),
                     OrderText = table.Column<string>(nullable: true),
+                    RejectText = table.Column<string>(nullable: true),
                     Answer = table.Column<string>(nullable: true),
                     StatusId = table.Column<int>(nullable: false),
                     CloseDate = table.Column<DateTime>(nullable: true)

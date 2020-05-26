@@ -7,12 +7,14 @@ export class Order {
   divisionId: number;
   toUserId: number;
   toUser: Author;
-  startDate: Date;
-  endDate: Date;
+  startDate: Date | string;
+  endDate: Date | string;
   shortText: string;
   orderText: string;
+  rejectText: string;
   answer: string;
   files: File[];
-  status: number;
-  closeDate: Date | null;
+  statusId: number;
+  status: any;
+  closeDate: Date | null | string;
 }

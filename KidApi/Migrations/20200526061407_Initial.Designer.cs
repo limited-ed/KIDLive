@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KidApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200521073142_Initial")]
+    [Migration("20200526061407_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,6 +115,9 @@ namespace KidApi.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("OrderText")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RejectText")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ShortText")
