@@ -25,7 +25,7 @@ namespace KidApi.Controllers
         [HttpGet]
         public IEnumerable<Order> GetAll()
         {
-            return _context.Orders.Include(i => i.Author).Include( i => i.Division).Include( i => i.Files).Include( i => i.ToUser).Include( i => i.Status);
+            return _context.Orders.Include(i => i.Author).Include( i => i.Division).Include( i => i.OrderFiles).Include( i => i.ToUser).Include( i => i.Status);
         }
 
         [HttpPut("{id}")]
@@ -41,6 +41,10 @@ namespace KidApi.Controllers
                 return BadRequest();
             }
             _context.Entry(order).State = EntityState.Modified;
+            foreach (var f in _context.OrderFiles.Where( w => w.OrderId==order.Id && !w.Confirmed))
+            {
+                f.Confirmed = true;
+            }
             try
             {
                 await _context.SaveChangesAsync();
@@ -91,7 +95,7 @@ namespace KidApi.Controllers
             }
 
             var newOrder = _context.Orders.Include(i => i.Author).Include( i => i.Division)
-                .Include( i => i.Files).Include( i => i.ToUser).Include( i => i.Status).FirstOrDefault(f => f.Id == order.Id);
+                .Include( i => i.OrderFiles).Include( i => i.ToUser).Include( i => i.Status).FirstOrDefault(f => f.Id == order.Id);
 
             return Ok(newOrder);
         }

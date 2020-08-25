@@ -117,19 +117,22 @@ namespace KidApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Files",
+                name: "OrderFiles",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    FileName = table.Column<string>(nullable: true),
+                    ContentType = table.Column<string>(nullable: true),
                     OrderId = table.Column<int>(nullable: false),
-                    Extention = table.Column<string>(nullable: true)
+                    Extention = table.Column<string>(nullable: true),
+                    Confirmed = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Files", x => x.Id);
+                    table.PrimaryKey("PK_OrderFiles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Files_Orders_OrderId",
+                        name: "FK_OrderFiles_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
@@ -137,8 +140,8 @@ namespace KidApi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Files_OrderId",
-                table: "Files",
+                name: "IX_OrderFiles_OrderId",
+                table: "OrderFiles",
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
@@ -170,7 +173,7 @@ namespace KidApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Files");
+                name: "OrderFiles");
 
             migrationBuilder.DropTable(
                 name: "Users");

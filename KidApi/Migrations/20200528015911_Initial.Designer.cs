@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KidApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200526061407_Initial")]
+    [Migration("20200528015911_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,25 +44,6 @@ namespace KidApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Divisions");
-                });
-
-            modelBuilder.Entity("KidApi.Models.File", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Extention")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("Files");
                 });
 
             modelBuilder.Entity("KidApi.Models.IdentityUser", b =>
@@ -145,6 +126,34 @@ namespace KidApi.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("KidApi.Models.OrderFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ContentType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Confirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Extention")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderFiles");
+                });
+
             modelBuilder.Entity("KidApi.Models.Status", b =>
                 {
                     b.Property<int>("Id")
@@ -157,15 +166,6 @@ namespace KidApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Statuses");
-                });
-
-            modelBuilder.Entity("KidApi.Models.File", b =>
-                {
-                    b.HasOne("KidApi.Models.Order", "Order")
-                        .WithMany("Files")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("KidApi.Models.IdentityUser", b =>
@@ -200,6 +200,15 @@ namespace KidApi.Migrations
                     b.HasOne("KidApi.Models.Author", "ToUser")
                         .WithMany()
                         .HasForeignKey("ToUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("KidApi.Models.OrderFile", b =>
+                {
+                    b.HasOne("KidApi.Models.Order", "Order")
+                        .WithMany("OrderFiles")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

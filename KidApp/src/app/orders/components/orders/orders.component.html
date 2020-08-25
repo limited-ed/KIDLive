@@ -8,7 +8,7 @@
       <clr-icon shape="pen"></clr-icon>
       Редактировать
     </button>
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" (click)="clickAnswer()">
       <clr-icon shape="plus"></clr-icon>
       Ответ
     </button>
@@ -22,7 +22,7 @@
 
   </toolbar>
 
-  <clr-datagrid [(clrDgSingleSelected)]="selected">
+  <clr-datagrid [(clrDgSingleSelected)]="selected" class="grid">
     <clr-dg-column>Замечание</clr-dg-column>
     <clr-dg-column>Открыто</clr-dg-column>
     <clr-dg-column>Срок</clr-dg-column>
@@ -41,13 +41,57 @@
         <clr-tooltip>
           <clr-icon clrTooltipTrigger shape="info-circle" size="16" aria-label="Uniq tooltip 1"></clr-icon>
           <clr-tooltip-content clrPosition="top-right" clrSize="xs" *clrIfOpen>
-              <span>Lorem</span>
+            <span>Lorem</span>
           </clr-tooltip-content>
         </clr-tooltip>
       </clr-dg-cell>
       <clr-dg-cell>{{order.closeDate}}</clr-dg-cell>
     </clr-dg-row>
+
+    <clr-dg-detail *clrIfDetail="let detail">
+      <clr-dg-detail-header>{{detail.shortText}}</clr-dg-detail-header>
+      <clr-dg-detail-body>
+        <div class="clr-row">
+          <label class="clr-col-md-2">Открыто</label>
+          <div class="clr-col-md-10">{{detail.startDate | date}}</div>
+        </div>
+        <div class="clr-row">
+          <label class="clr-col-md-2">Срок</label>
+          <div class="clr-col-md-10">{{detail.endDate | date}}</div>
+        </div>
+        <div class="clr-row">
+          <label class="clr-col-md-2">Добавил</label>
+          <div class="clr-col-md-10">{{detail.author.name}}</div>
+        </div>
+        <div class="clr-row">
+          <label class="clr-col-md-2">Добавил</label>
+          <div class="clr-col-md-10">{{detail.author.name}}</div>
+        </div>
+        <div class="clr-row">
+          <label class="clr-col-md-2">Исполнитель</label>
+          <div class="clr-col-md-10">{{detail.author.name}}</div>
+        </div>
+        <div class="clr-row">
+          <label class="clr-col-md-2">Текст замечания</label>
+          <div class="clr-col-md-10">{{detail.orderText}}</div>
+        </div>
+        <div class="clr-row">
+          <label class="clr-col-md-2">Статус</label>
+          <div class="clr-col-md-10">{{detail.status.title}}</div>
+        </div>
+        <div class="clr-row">
+          <label class="clr-col-md-2">Устранение замечания</label>
+          <div class="clr-col-md-10">{{detail.orderText}}</div>
+        </div>
+        <div class="clr-row">
+          <label class="clr-col-md-2">Дата закрытия</label>
+          <div class="clr-col-md-10">{{detail.closeDate | date}}</div>
+        </div>
+      </clr-dg-detail-body>
+    </clr-dg-detail>
   </clr-datagrid>
 </div>
 
-<edit-dlg [(visible)]="editVisible" [divisions]="divisions" [order]="editedOrder" (orderChange)="afterEdit($event)"></edit-dlg>
+<edit-dlg [(visible)]="editVisible" [divisions]="divisions" [order]="editedOrder" (orderChange)="afterEdit($event)">
+</edit-dlg>
+<answer-dlg [(visible)]="answerVisible" [order]="editedOrder" (orderChange)="afterEdit($event)"></answer-dlg>

@@ -22,7 +22,7 @@ namespace KidApi.Models
         public string OrderText { get; set; }
         public string RejectText { get; set; }
         public string Answer { get; set; }
-        public List<File> Files { get; set; }
+        public List<OrderFile> OrderFiles { get; set; }
         public int StatusId { get; set; }          
         public Status Status { get; set; }
         public DateTime? CloseDate { get; set; }

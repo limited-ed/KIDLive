@@ -1,0 +1,54 @@
+<div>
+  <clr-wizard #wizard [(clrWizardOpen)]="visible" clrWizardSize="xl" (clrWizardOnCancel)="onCancel()" (clrWizardOnFinish)="onFinish()">
+    <clr-wizard-title>Medium-Sized Wizard</clr-wizard-title>
+
+    <clr-wizard-button [type]="'cancel'">Отмена</clr-wizard-button>
+    <clr-wizard-button [type]="'previous'">Назад</clr-wizard-button>
+    <clr-wizard-button [type]="'next'" [clrLoading]="savingProgress" >Далее</clr-wizard-button>
+    <clr-wizard-button [type]="'finish'">Завершить</clr-wizard-button>
+
+    <clr-wizard-page (clrWizardPageOnCommit)="onAnswer()">
+
+      <ng-template clrPageTitle>Ответ</ng-template>
+      <div>
+        <form clrForm [formGroup]="form">
+          <label>Ввведите ответ об устранении</label>
+          <clr-textarea-container class="clr-col-md-12 clr-col-12">
+            <textarea clrTextarea name="description" formControlName="answer" style="width: 100%; height: 450px; resize: none;"
+              class="clr-col-md-12 clr-col-12"></textarea>
+          </clr-textarea-container>
+        </form>
+      </div>
+
+
+
+    </clr-wizard-page>
+
+    <clr-wizard-page (clrWizardPageOnCommit)="onCommit()">
+
+        <ng-template clrPageTitle>Добавление файлов</ng-template>
+        <div class="" [className]="dragOver? 'upload-box-content card over':'upload-box-content card'">
+          <div class="drop-container" ngFileDrop [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
+            <p>
+              Перетащите файлы для добавления или
+              <label class="upload-button">
+                <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput"> выберете
+              </label>
+              файл для загрузки.
+            </p>
+          </div>
+        </div>
+        <div class="clr-row" style="height: 8px; padding-top: 8px;">
+          <clr-progress-bar *ngIf="uploadProgress>0" [clrValue]="uploadProgress" clrSuccess clrFade style="max-height: .4rem"></clr-progress-bar>
+        </div>
+        <div class="clr-row files" *ngIf="order&&order.orderFiles">
+          <file-icon *ngFor="let file of order.orderFiles; let i=index" [file]="file"></file-icon>
+        </div>
+
+
+
+    </clr-wizard-page>
+
+
+  </clr-wizard>
+</div>

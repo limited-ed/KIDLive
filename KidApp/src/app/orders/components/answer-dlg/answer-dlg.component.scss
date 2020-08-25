@@ -1,0 +1,50 @@
+file-icon {
+  margin-right: 10px;
+}
+
+.upload-box-content {
+//  border: 1px solid black;
+
+}
+
+.over{
+  //  border: 1px solid black;
+  background-color: rgba(201, 255, 206);
+  }
+
+.upload-box-content .upload-item, .upload-box-content .drop-container {
+	width: 100%;
+	height: 150px;
+
+}
+
+.upload-box-content .drop-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.upload-box-content .drop-container p {
+	font-size: 16px;
+	font-weight: 400;
+	color: black;
+}
+
+.upload-box-content .drop-container .upload-button {
+	display: inline-block;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	font-weight: 600;
+	padding: 0 2px;
+}
+
+.upload-box-content .drop-container .upload-button input {
+	display: none;
+}
+
+.files {
+  overflow-y: auto;
+  height: 380px;
+}
+

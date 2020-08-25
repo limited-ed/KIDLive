@@ -64,10 +64,6 @@ namespace KidApi.Data
 
                     _context.SaveChanges();
 
-                    _context.Files.Add( new File() { OrderId = 1, Extention = "pdf" } );
-                    _context.Files.Add( new File() { OrderId = 1, Extention = "doc" } );
-
-                    _context.SaveChanges();
                 }
 
             }
