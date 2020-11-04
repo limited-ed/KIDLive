@@ -10,7 +10,7 @@ import { OrderFile } from 'models';
 export class FileIconComponent implements OnInit {
 
   @Input() file: OrderFile;
-  @Output() delete = new EventEmitter<number>();
+  @Output() delete = new EventEmitter<OrderFile>();
 
   constructor() { }
 
@@ -18,6 +18,6 @@ export class FileIconComponent implements OnInit {
   }
 
   onDelete(){
-    this.delete.emit(this.file.id);
+    this.delete.emit(this.file);
   }
 }

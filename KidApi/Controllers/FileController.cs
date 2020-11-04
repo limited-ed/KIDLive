@@ -99,10 +99,6 @@ namespace KidApi.Controllers
             {
                 System.IO.File.Delete(filePath);
             }
-
-            _context.OrderFiles.Remove(orderFile);
-            await _context.SaveChangesAsync();
-
             return Ok();
         }
 

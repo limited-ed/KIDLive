@@ -12,3 +12,4 @@ export * from './author';
 export * from './fileItem';
 export * from './answer';
 export * from './orderFile';
+export * from './status';

@@ -10,12 +10,13 @@ import { AuthenticationGuard,
          MessageBusService,
          AutofocusDirective,
          ToolbarComponent,
+         StatusTitlePipe,
 
         } from './';
 
 @NgModule({
-  declarations: [ToolbarComponent, AutofocusDirective],
-  exports: [ToolbarComponent, AutofocusDirective],
+  declarations: [ToolbarComponent, AutofocusDirective, StatusTitlePipe],
+  exports: [ToolbarComponent, AutofocusDirective, StatusTitlePipe],
   imports: [
     CommonModule,
     HttpClientModule

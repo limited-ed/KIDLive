@@ -9,3 +9,4 @@ export * from './common/validators';
 export * from './components/toolbar/toolbar.component';
 export * from './services/order.service';
 export * from './common/map';
+export * from './pipes/statustitlepipe';

@@ -5,12 +5,16 @@
       Добавить
     </button>
     <button class="btn btn-primary" (click)="clickEdit()">
-      <clr-icon shape="pen"></clr-icon>
+      <clr-icon shape="pencil"></clr-icon>
       Редактировать
     </button>
     <button class="btn btn-primary" (click)="clickAnswer()">
-      <clr-icon shape="plus"></clr-icon>
+      <clr-icon shape="refresh"></clr-icon>
       Ответ
+    </button>
+    <button class="btn btn-primary">
+      <clr-icon shape="tasks"></clr-icon>
+      Закрыть замечание
     </button>
     <button class="btn btn-primary">
       <clr-icon shape="plus"></clr-icon>
@@ -77,11 +81,11 @@
         </div>
         <div class="clr-row">
           <label class="clr-col-md-2">Статус</label>
-          <div class="clr-col-md-10">{{detail.status.title}}</div>
+          <div class="clr-col-md-10">{{detail.statusId | statustitle}}</div>
         </div>
         <div class="clr-row">
           <label class="clr-col-md-2">Устранение замечания</label>
-          <div class="clr-col-md-10">{{detail.orderText}}</div>
+          <div class="clr-col-md-10">{{detail.answer}}</div>
         </div>
         <div class="clr-row">
           <label class="clr-col-md-2">Дата закрытия</label>

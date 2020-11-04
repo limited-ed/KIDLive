@@ -1,6 +1,6 @@
 <div>
   <clr-wizard #wizard [(clrWizardOpen)]="visible" clrWizardSize="xl" (clrWizardOnCancel)="onCancel()" (clrWizardOnFinish)="onFinish()">
-    <clr-wizard-title>Medium-Sized Wizard</clr-wizard-title>
+    <clr-wizard-title>Ответ на замечание</clr-wizard-title>
 
     <clr-wizard-button [type]="'cancel'">Отмена</clr-wizard-button>
     <clr-wizard-button [type]="'previous'">Назад</clr-wizard-button>
@@ -42,7 +42,7 @@
           <clr-progress-bar *ngIf="uploadProgress>0" [clrValue]="uploadProgress" clrSuccess clrFade style="max-height: .4rem"></clr-progress-bar>
         </div>
         <div class="clr-row files" *ngIf="order&&order.orderFiles">
-          <file-icon *ngFor="let file of order.orderFiles; let i=index" [file]="file"></file-icon>
+          <file-icon *ngFor="let file of order.orderFiles; let i=index" [file]="file" (delete)="onDeleteFile($event)"></file-icon>
         </div>
 
 
