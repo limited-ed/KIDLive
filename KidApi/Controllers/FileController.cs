@@ -93,6 +93,7 @@ namespace KidApi.Controllers
             _context.OrderFiles.Remove(orderFile);
             await _context.SaveChangesAsync();
 
+            
 
             var filePath = Path.Combine(@"d:\files\", $"file{orderFile.Id}{orderFile.Extention}");
             if (System.IO.File.Exists(filePath))

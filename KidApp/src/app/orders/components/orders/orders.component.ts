@@ -18,6 +18,7 @@ export class OrdersComponent implements OnInit {
 
   editVisible = false;
   answerVisible = false;
+  viewVisible = false;
 
   constructor(
     private orderService: OrderService,
@@ -78,6 +79,11 @@ export class OrdersComponent implements OnInit {
     }
     this.editedOrder = cloneObj(this.selected);
     this.answerVisible = true;
+  }
+
+  clickReject(){
+    this.editedOrder = cloneObj(this.selected);
+    this.viewVisible = true;
   }
 
   rowClick(order: Order) {

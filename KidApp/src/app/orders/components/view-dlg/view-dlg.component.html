@@ -1,0 +1,72 @@
+<div>
+  <clr-modal [(clrModalOpen)]="visible" [clrModalSize]="'xl'" [clrModalClosable]="false">
+    <h3 class="modal-title">Новое задание</h3>
+    <div class="modal-body">
+      <form clrForm [formGroup]="form">
+        <div class="card" *ngIf="order !== undefined" style="margin-top: 0">
+          <div class="card-block">
+            <div class="card-title">
+              {{order.shortText}}
+            </div>
+            <div class="card-text">
+              {{order.orderText}}
+            </div>
+          </div>
+          <div class="card-block">
+            <div class="card-text">
+              {{order.answer}}
+              <div class="clr-row" style="height:230px; overflow-y: scroll;">
+                <div class="clr-col-4" *ngFor="let file of order.orderFiles; let i=index">
+                  <div class="card">
+                    <div class="card-block">
+                      <div class="clr-row">
+                        <div class="clr-col-2 no-padding "><img *ngIf="file!==undefined"
+                            src="/assets/types/{{file.extention}}.png" width="40px"></div>
+                        <div class="clr-col-10 card-text" *ngIf="file!==undefined">
+                          {{file.fileName}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <a href="..." class="btn btn-sm btn-link">Открыть</a>
+                      <a href="..." class="btn btn-sm btn-danger btn-link">Удалить</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-block">
+            <label>Ввведите ответ об устранении / отклонении</label>
+            <clr-textarea-container class="clr-col-md-12 clr-col-12">
+              <textarea clrTextarea name="description" formControlName="rejectText" style="width: 100%; height: 200px; resize: none;"
+                class="clr-col-md-12 clr-col-12"></textarea>
+            </clr-textarea-container>
+          </div>
+        </div>
+      </form>
+      <div class="alert alert-danger" *ngIf="isError">
+        <div class="alert-items">
+          <div class="alert-item static" role="alert">
+            <div class="alert-icon-wrapper">
+              <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+              Ошибка сохранения данных. Свяжитесь с системным администратором.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="onApply()">Согласовать</button>
+      <button type="button" class="btn btn-warning" (click)="onDiscard()">Вернуть</button>
+      <button type="button" class="btn btn-outline" (click)="onCancel()">Отмена</button>
+
+    </div>
+  </clr-modal>
+
+
+
+
+</div>

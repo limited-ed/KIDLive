@@ -12,13 +12,9 @@
       <clr-icon shape="refresh"></clr-icon>
       Ответ
     </button>
-    <button class="btn btn-primary">
-      <clr-icon shape="tasks"></clr-icon>
-      Закрыть замечание
-    </button>
-    <button class="btn btn-primary">
+    <button class="btn btn-success" (click)="clickReject()">
       <clr-icon shape="plus"></clr-icon>
-      Сменить статус
+      Принять/Отклонить
     </button>
     <button class="btn btn-danger">
       <clr-icon shape="trash"></clr-icon> Удалить
@@ -99,3 +95,4 @@
 <edit-dlg [(visible)]="editVisible" [divisions]="divisions" [order]="editedOrder" (orderChange)="afterEdit($event)">
 </edit-dlg>
 <answer-dlg [(visible)]="answerVisible" [order]="editedOrder" (orderChange)="afterEdit($event)"></answer-dlg>
+<view-dlg [(visible)]="viewVisible" [order]="editedOrder" (orderChange)="afterEdit($event)"></view-dlg>

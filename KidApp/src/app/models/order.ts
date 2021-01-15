@@ -1,6 +1,6 @@
 import { Division, File , Author, OrderFile} from './';
 
-export interface Order
+export class Order
 {
     id: number;
     authorId: number;
