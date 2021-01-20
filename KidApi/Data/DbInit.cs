@@ -16,19 +16,19 @@ namespace KidApi.Data
         {
             try
             {
-                if (!_context.Divisions.Any())
+                /*if (!_context.Divisions.Any())
                 {
                     _context.Divisions.Add( new Division { Title = "Подразделение 1"});
                     _context.Divisions.Add( new Division { Title = "Подразделение 2"});
                     _context.Divisions.Add( new Division { Title = "Подразделение 3"});
                     _context.Divisions.Add( new Division { Title = "Подразделение 4"});
                     _context.SaveChanges();
-                }
+                }*/
                 if (!_context.Users.Any())
                 {
                     _context.Users.Add(new IdentityUser() { Login = "admin", PasswordHash = "password".GetHash(), UserName="Администратор", RoleId = 3, DivisionId = 1});
-                    _context.Users.Add(new IdentityUser() { Login = "pto", PasswordHash = "password".GetHash(), UserName="ВЧПО", RoleId = 1, DivisionId = 1});
-                    _context.Users.Add(new IdentityUser() { Login = "to", PasswordHash = "password".GetHash(), UserName="ВЧДТ", RoleId = 2, DivisionId = 1});
+              //      _context.Users.Add(new IdentityUser() { Login = "pto", PasswordHash = "password".GetHash(), UserName="ВЧПО", RoleId = 1, DivisionId = 1});
+              //      _context.Users.Add(new IdentityUser() { Login = "to", PasswordHash = "password".GetHash(), UserName="ВЧДТ", RoleId = 2, DivisionId = 1});
                     _context.SaveChanges();
                 }
                 if (!_context.Statuses.Any())
@@ -44,13 +44,13 @@ namespace KidApi.Data
                 if(!_context.Authors.Any())
                 {
                     _context.Authors.Add( new Author() { Name = "Администратор"});
-                    _context.Authors.Add( new Author() { Name = "ВЧПО"});
-                    _context.Authors.Add( new Author() { Name = "ВЧДТ"});
+                   // _context.Authors.Add( new Author() { Name = "ВЧПО"});
+                   // _context.Authors.Add( new Author() { Name = "ВЧДТ"});
                 }
 
                 if(!_context.Orders.Any())
                 {
-                    _context.Orders.Add(new Order() 
+                   /* _context.Orders.Add(new Order() 
                     {
                         AuthorId = 3,
                         DivisionId = 1,
@@ -63,7 +63,7 @@ namespace KidApi.Data
                     });
 
                     _context.SaveChanges();
-
+*/
                 }
 
             }

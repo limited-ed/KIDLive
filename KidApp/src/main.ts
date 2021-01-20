@@ -8,5 +8,8 @@ if (environment.production) {
   enableProdMode();
 }
 
+localStorage.removeItem('id_token');
+localStorage.removeItem('refresh_token');
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));

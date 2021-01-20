@@ -9,6 +9,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Order, OrderFile } from 'models';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Configuration } from 'app.constants';
 import {
   UploaderOptions,
   UploadFile,
@@ -61,7 +62,7 @@ export class AnswerDlgComponent implements OnInit {
     return this.savingProgress === ClrLoadingState.ERROR;
   }
 
-  url = 'http://localhost:5000/api/file';
+  url = Configuration.Server + '/api/file';
   formData: FormData;
   uploadFiles: UploadFile[] = new Array<UploadFile>();
   uploadInput: EventEmitter<UploadInput> = new EventEmitter<UploadInput>();

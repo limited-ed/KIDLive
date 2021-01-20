@@ -108,7 +108,11 @@ namespace KidApi
                 endpoints.MapControllers();
             });
 
-            dbInit.Init();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+
+          //  dbInit.Init();
         }
     }
 }

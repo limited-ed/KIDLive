@@ -305,10 +305,10 @@ $RECYCLE.BIN/
 .vs\*
 data.sqlite
 wwwroot\*.*
-ClothApi/wwwroot/*.*.*
-ClothApi/wwwroot/*.*
-ClothApi/wwwroot/index.html
-ClothApi/wwwroot/3rdpartylicenses.txt
+KidApi/wwwroot/*.*.*
+KidApi/wwwroot/*.*
+KidApi/wwwroot/index.html
+KidApi/wwwroot/3rdpartylicenses.txt
 additional-locale/*
 images/*
 inline-locale-files/*
@@ -319,3 +319,4 @@ pdf.worker-es5.js
 pdf.worker.js
 viewer-es5.js
 viewer.js
+publish/*

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System.Linq;
 using KidApi.Data;
 using KidApi.Models;
@@ -20,10 +21,12 @@ namespace KidApi.Controllers
     public class FileController : Controller
     {
         private DataContext _context;
+        private string _path;
 
-        public FileController(DataContext context)
+        public FileController(DataContext context, IConfiguration configuration)
         {
             _context = context;
+            _path = configuration["Files:Path"];
         }
 
         [HttpGet("{id}")]
@@ -34,11 +37,11 @@ namespace KidApi.Controllers
             {
                 return BadRequest();
             }
-            var filePath = Path.Combine(@"d:\files\", $"file{orderFile.Id}{orderFile.Extention}");
+            var filePath = Path.Combine(_path, $"file{orderFile.Id}{orderFile.Extention}");
 
             try
             {
-                var stream = new FileStream(System.IO.Path.Combine(@"d:\files\", $"file{orderFile.Id}{orderFile.Extention}"), FileMode.Open);
+                var stream = new FileStream(System.IO.Path.Combine(_path, $"file{orderFile.Id}{orderFile.Extention}"), FileMode.Open);
                 return File(stream, orderFile.ContentType, orderFile.FileName);
             }
             catch (System.Exception)
@@ -57,7 +60,7 @@ namespace KidApi.Controllers
 
             try
             {
-                var filePath = Path.Combine(@"d:\files\", $"file{orderFile.Id}{orderFile.Extention}");
+                var filePath = Path.Combine(_path, $"file{orderFile.Id}{orderFile.Extention}");
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     await file.CopyToAsync(fileStream);
@@ -95,7 +98,7 @@ namespace KidApi.Controllers
 
             
 
-            var filePath = Path.Combine(@"d:\files\", $"file{orderFile.Id}{orderFile.Extention}");
+            var filePath = Path.Combine(_path, $"file{orderFile.Id}{orderFile.Extention}");
             if (System.IO.File.Exists(filePath))
             {
                 System.IO.File.Delete(filePath);
@@ -121,7 +124,7 @@ namespace KidApi.Controllers
 
             foreach (var f in order.OrderFiles)
             {
-                var filePath = Path.Combine(@"d:\files\", $"file{f.Id}{f.Extention}");
+                var filePath = Path.Combine(_path, $"file{f.Id}{f.Extention}");
                 if (System.IO.File.Exists(filePath))
                 {
                     System.IO.File.Delete(filePath);
