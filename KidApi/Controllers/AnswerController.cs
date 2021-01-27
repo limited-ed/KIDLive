@@ -15,6 +15,7 @@ namespace KidApi.Controllers
 {
     [Route("api/[controller]")]
     [Produces("application/json")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class AnswerController:  Controller
     {
         private DataContext _context;

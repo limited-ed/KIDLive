@@ -77,7 +77,6 @@ namespace KidApi.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     AuthorId = table.Column<int>(nullable: false),
                     DivisionId = table.Column<int>(nullable: false),
-                    ToUserId = table.Column<int>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
                     ShortText = table.Column<string>(nullable: true),
@@ -108,12 +107,7 @@ namespace KidApi.Migrations
                         principalTable: "Statuses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Orders_Authors_ToUserId",
-                        column: x => x.ToUserId,
-                        principalTable: "Authors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+
                 });
 
             migrationBuilder.CreateTable(
@@ -158,11 +152,6 @@ namespace KidApi.Migrations
                 name: "IX_Orders_StatusId",
                 table: "Orders",
                 column: "StatusId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_ToUserId",
-                table: "Orders",
-                column: "ToUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_DivisionId",

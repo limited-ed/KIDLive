@@ -16,14 +16,14 @@ namespace KidApi.Data
         {
             try
             {
-                /*if (!_context.Divisions.Any())
+                if (!_context.Divisions.Any())
                 {
-                    _context.Divisions.Add( new Division { Title = "Подразделение 1"});
+                  /*  _context.Divisions.Add( new Division { Title = "Подразделение 1"});
                     _context.Divisions.Add( new Division { Title = "Подразделение 2"});
                     _context.Divisions.Add( new Division { Title = "Подразделение 3"});
                     _context.Divisions.Add( new Division { Title = "Подразделение 4"});
-                    _context.SaveChanges();
-                }*/
+                    _context.SaveChanges();*/
+                }
                 if (!_context.Users.Any())
                 {
                     _context.Users.Add(new IdentityUser() { Login = "admin", PasswordHash = "password".GetHash(), UserName="Администратор", RoleId = 3, DivisionId = 1});
@@ -46,6 +46,7 @@ namespace KidApi.Data
                     _context.Authors.Add( new Author() { Name = "Администратор"});
                    // _context.Authors.Add( new Author() { Name = "ВЧПО"});
                    // _context.Authors.Add( new Author() { Name = "ВЧДТ"});
+                   _context.SaveChanges();
                 }
 
                 if(!_context.Orders.Any())
@@ -54,7 +55,6 @@ namespace KidApi.Data
                     {
                         AuthorId = 3,
                         DivisionId = 1,
-                        ToUserId = 2,
                         StartDate = new DateTime(2020,05,20),
                         EndDate = new DateTime(2020,06,20),
                         OrderText = "Починить там что-то",

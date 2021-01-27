@@ -13,7 +13,7 @@ export class MainComponent implements OnInit {
   isLoading = false;
   isSaving = false;
   error = '';
-
+  userId: number;
 
   constructor(private messageBus: MessageBusService, private auth: AuthService, private router: Router) {  }
 
@@ -31,7 +31,7 @@ export class MainComponent implements OnInit {
   }
 
   getRole() {
-    return parseInt(this.auth.getRole(), 10);
+    return this.auth.getRole();
   }
 
   getUsername() {

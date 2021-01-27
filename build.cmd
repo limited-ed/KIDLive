@@ -10,19 +10,8 @@ cd ..
 del publish.zip
 7z.exe a -r publish.zip .\publish\*
 
-echo open 10.109.68.68 > ftp.txt
-echo exch>> ftp.txt
-echo exch>> ftp.txt
-echo mdelete publish.zip>> ftp.txt
-echo y>> ftp.txt
-echo mput publish.zip>> ftp.txt
-echo y>> ftp.txt
-echo close>> ftp.txt
-echo quit>> ftp.txt
+tftp -i 10.109.225.188 put publish.zip
 
-ftp -s:ftp.txt
-
-del ftp.txt
 del publish.zip
 rd /s /q publish
 echo Done....

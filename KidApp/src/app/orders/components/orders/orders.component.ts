@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderService, DivisionService, MessageBusService } from 'core';
+import { OrderService, DivisionService, MessageBusService, AuthService } from 'core';
 import { Order, Division } from 'models';
 import { forkJoin } from 'rxjs';
 import { cloneObj } from 'core/common/cloneObj';
@@ -15,6 +15,7 @@ export class OrdersComponent implements OnInit {
 
   selected: Order;
   editedOrder: Order;
+  userRole: number;
 
   editVisible = false;
   answerVisible = false;
@@ -23,7 +24,8 @@ export class OrdersComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private divService: DivisionService,
-    private messageBus: MessageBusService
+    private messageBus: MessageBusService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +49,8 @@ export class OrdersComponent implements OnInit {
         subscription.unsubscribe();
       }
     );
+
+    this.userRole = this.authService.getRole();
   }
 
   clickAdd() {
@@ -63,7 +67,6 @@ export class OrdersComponent implements OnInit {
       shortText: '',
       startDate: new Date(),
       statusId: 1,
-      toUserId: 0,
     } as Order;
     this.editVisible = true;
   }
@@ -84,6 +87,19 @@ export class OrdersComponent implements OnInit {
   clickReject(){
     this.editedOrder = cloneObj(this.selected);
     this.viewVisible = true;
+  }
+
+  clickDelete(){
+    let subscription = this.orderService.delete(this.selected.id).subscribe(
+      (next) => {
+        let i = this.orders.findIndex((f) => f.id === this.selected.id);
+        this.orders.splice(i, 1);
+      },
+      (error) => {},
+      () => {
+        subscription.unsubscribe();
+      }
+    )
   }
 
   rowClick(order: Order) {

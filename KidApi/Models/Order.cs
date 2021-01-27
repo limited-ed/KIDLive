@@ -14,8 +14,8 @@ namespace KidApi.Models
         public Author Author { get; set; }
         public int DivisionId { get; set; }
         public Division Division { get; set; }
-        public int ToUserId { get; set; }
-        public Author ToUser { get; set; }
+//        public int ToUserId { get; set; }
+//        public Author ToUser { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string ShortText { get; set; }

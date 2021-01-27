@@ -14,7 +14,7 @@
             </clr-input-container>
             <clr-input-container>
                 <label class="clr-col-12 clr-col-md-12">Пароль</label>
-                <input clrInput type="password" [(ngModel)]="model.password"  [ngModelOptions]="{standalone: true}"/>
+                <input clrInput type="password" [(ngModel)]="model.password" (keyup)="handleKeyUp($event)" [ngModelOptions]="{standalone: true}"/>
             </clr-input-container>
         </form>
 

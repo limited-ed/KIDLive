@@ -108,9 +108,6 @@ namespace KidApi.Migrations
                     b.Property<int>("StatusId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ToUserId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
@@ -118,8 +115,6 @@ namespace KidApi.Migrations
                     b.HasIndex("DivisionId");
 
                     b.HasIndex("StatusId");
-
-                    b.HasIndex("ToUserId");
 
                     b.ToTable("Orders");
                 });
@@ -189,12 +184,6 @@ namespace KidApi.Migrations
                     b.HasOne("KidApi.Models.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("KidApi.Models.Author", "ToUser")
-                        .WithMany()
-                        .HasForeignKey("ToUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

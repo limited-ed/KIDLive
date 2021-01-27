@@ -30,7 +30,7 @@ registerLocaleData(localeRu, 'ru');
     JwtModule.forRoot({
       config: {
         tokenGetter: getToken,
-        whitelistedDomains: ['localhost:5000', '10.109.225.151:5000']
+        whitelistedDomains: ['10.109.225.188:80', 'localhost:5000', '10.109.225.151:5000']
       }
     })
   ],

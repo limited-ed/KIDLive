@@ -61,6 +61,18 @@ namespace KidApi.Controllers
             var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.UserName),
                         new Claim("userRole", user.RoleId.ToString()) };
             claims.Add( new Claim("userId", user.Id.ToString()));
+            if (user.RoleId == 1) claims.Add(new Claim("Performer","true"));
+            if (user.RoleId == 2) 
+            { 
+                claims.Add(new Claim("Performer","true"));
+                claims.Add(new Claim("Controller","true")); 
+            }
+            if (user.RoleId == 3) 
+            {
+                claims.Add(new Claim("Performer","true"));
+                claims.Add(new Claim("Controller","true")); 
+                claims.Add(new Claim("Admin","true"));
+            }
 
             var identity = new ClaimsIdentity(claims);
 

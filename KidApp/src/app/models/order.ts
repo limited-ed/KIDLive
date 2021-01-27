@@ -6,7 +6,6 @@ export class Order
     authorId: number;
     author: Author;
     divisionId: number;
-    toUserId: number;
     toUser: Author;
     startDate: Date | string;
     endDate: Date | string;

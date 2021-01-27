@@ -31,12 +31,20 @@
         <clr-select-container>
           <label for="selects_1" class="clr-col-3 clr-col-md-3">Выберите роль</label>
           <select id="selects_1" clrSelect formControlName="role" name="selects_1" type="number" class="clr-col-9 clr-col-md-9">
-            <option value="1">Только просмотр</option>
-            <option value="2">Кладовщик</option>
-            <option value="3">Отдел охраны труда</option>
-            <option value="4">Администратор</option>
+            <option value="0">Только просмотр</option>
+            <option value="1">Исполнитель</option>
+            <option value="2">Работник техотдела</option>
+            <option value="3">Администратор</option>
           </select>
         </clr-select-container>
+
+        <clr-select-container>
+          <label for="selects_2" class="clr-col-3 clr-col-md-3">Подразделение</label>
+          <select id="selects_2" clrSelect formControlName="division" name="selects_2" type="number" class="clr-col-9 clr-col-md-9">
+            <option *ngFor="let division of divisions" value="{{division.id}}">{{division.title}}</option>
+          </select>
+        </clr-select-container>
+
       </form>
       <div style="height:36px">
         <clr-alerts>

@@ -1,10 +1,10 @@
 <div class="c-content">
   <toolbar>
-    <button class="btn btn-primary" (click)="clickAdd()">
+    <button class="btn btn-primary" (click)="clickAdd()" *ngIf="userRole > 1">
       <clr-icon shape="plus"></clr-icon>
       Добавить
     </button>
-    <button class="btn btn-primary" (click)="clickEdit()">
+    <button class="btn btn-primary" (click)="clickEdit()" *ngIf="userRole > 1">
       <clr-icon shape="pencil"></clr-icon>
       Редактировать
     </button>
@@ -12,11 +12,11 @@
       <clr-icon shape="refresh"></clr-icon>
       Ответ
     </button>
-    <button class="btn btn-success" (click)="clickReject()">
+    <button class="btn btn-success" (click)="clickReject()" *ngIf="userRole > 1">
       <clr-icon shape="plus"></clr-icon>
       Принять/Отклонить
     </button>
-    <button class="btn btn-danger">
+    <button class="btn btn-danger" (click)="clickDelete()" *ngIf="userRole > 1">
       <clr-icon shape="trash"></clr-icon> Удалить
     </button>
 
@@ -26,7 +26,6 @@
     <clr-dg-column>Замечание</clr-dg-column>
     <clr-dg-column>Открыто</clr-dg-column>
     <clr-dg-column>Срок</clr-dg-column>
-    <clr-dg-column>Исполнитель</clr-dg-column>
     <clr-dg-column>Подразделение</clr-dg-column>
     <clr-dg-column>Статус</clr-dg-column>
     <clr-dg-column>Закрыто</clr-dg-column>
@@ -35,7 +34,6 @@
       <clr-dg-cell>{{order.shortText}}</clr-dg-cell>
       <clr-dg-cell>{{order.startDate | date}}</clr-dg-cell>
       <clr-dg-cell>{{order.endDate | date}}</clr-dg-cell>
-      <clr-dg-cell>{{order.toUser.name}}</clr-dg-cell>
       <clr-dg-cell>{{order.division.title}}</clr-dg-cell>
       <clr-dg-cell>{{order.status.title}}
         <clr-tooltip>

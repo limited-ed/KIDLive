@@ -29,7 +29,8 @@ export class UserDialogComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     password: new FormControl('', [notRequiredOrMinLength(6)]),
     confirm: new FormControl('', [notRequiredOrMinLength(6), duplicatePassword]),
-    role: new FormControl()
+    role: new FormControl(),
+    division: new FormControl()
   });
 
 
@@ -56,7 +57,8 @@ export class UserDialogComponent implements OnInit {
       id: this._user.id,
       login: this.form.get('login').value,
       userName: this.form.get('name').value,
-      roleId: this.form.get('role').value * 1
+      roleId: this.form.get('role').value * 1,
+      divisionId: this.form.get('division').value * 1,
     } as User;
     if (this.form.get('password').value !== '') {
       newUser.passwordHash = sha256(this.form.get('password').value);
@@ -77,6 +79,8 @@ export class UserDialogComponent implements OnInit {
     this.form.get('login').setValue(user.login);
     this.form.get('name').setValue(user.userName);
     this.form.get('role').setValue(user.roleId);
+    this.form.get('division').setValue(user.divisionId);
+    this.divisions = divisions;
     this.visible = true;
   }
 

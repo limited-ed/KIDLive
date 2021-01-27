@@ -75,6 +75,12 @@ namespace KidApi
             var connection = Configuration.GetSection("Data:ConnectionString").Value;
             var connectionfb = Configuration.GetSection("Data:ConnectionStringFB").Value;
 
+            services.AddAuthorization( options => {
+                options.AddPolicy("ViewOnly", policy => policy.RequireAuthenticatedUser());
+                options.AddPolicy("Performer", policy => policy.RequireClaim ("Performer","true"));
+                options.AddPolicy("Controller", policy => policy.RequireClaim("Controller","true"));
+                options.AddPolicy("Admin", policy => policy.RequireClaim("Admin","true"));
+            });
 
             services.AddDbContext<DataContext>(options => options.UseSqlite(connection));
             services.AddTransient<DbInit>();
@@ -90,6 +96,7 @@ namespace KidApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                dbInit.Init();
             }
 
             //app.UseHttpsRedirection();
@@ -112,7 +119,7 @@ namespace KidApi
             app.UseStaticFiles();
 
 
-          //  dbInit.Init();
+          //  
         }
     }
 }

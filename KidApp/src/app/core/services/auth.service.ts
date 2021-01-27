@@ -33,13 +33,13 @@ export class AuthService {
          }));
     }
 
-    public getRole() {
+    public getRole(): number {
         if (localStorage.getItem('id_token') == null) {
-            return false;
+            return -1;
         }
         const helper = new JwtHelperService();
         const token = helper.decodeToken(localStorage.getItem('id_token'));
-        return token.userRole;
+        return token.userRole * 1;
     }
 
     public getUserName() {

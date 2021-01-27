@@ -111,10 +111,10 @@ namespace KidApi.Controllers
         {
             var order = await _context.Orders.Include(i => i.OrderFiles).FirstOrDefaultAsync(w => w.Id == id);
             var userId = Int32.Parse(User.Claims.FirstOrDefault(w => w.Type == "userId").Value);
-            if (order == null || order.AuthorId != userId)
+           /* if (order == null || order.AuthorId != userId)
             {
                 return BadRequest();
-            }
+            }*/
             var files = order.OrderFiles.Where(w => w.Confirmed == false);
             if (files != null)
             {

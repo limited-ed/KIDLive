@@ -86,21 +86,6 @@ export class AnswerDlgComponent implements OnInit {
       this.onFinish();
       return;
     }
-    this.http
-      .patch(
-        this.url + '/' + this._order.id,
-        {},
-        {
-          headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('id_token'),
-          },
-        }
-      )
-      .subscribe({
-        complete: (() => {
-          this.onFinish();
-        }).bind(this),
-      });
   }
 
   onCommit() {

@@ -19,6 +19,12 @@ export class LoginScreenComponent implements OnInit {
   ngOnInit() {
   }
 
+  handleKeyUp(e){
+    if (e.keyCode === 13){
+       this.login();
+    }
+ }
+
   login() {
     this.inProgress = true;
     this.error = '';
