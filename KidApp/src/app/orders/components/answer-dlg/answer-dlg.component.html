@@ -11,6 +11,9 @@
 
       <ng-template clrPageTitle>Ответ</ng-template>
       <div>
+        <div *ngIf="order!==undefined">
+          {{order.orderText}}
+        </div>
         <form clrForm [formGroup]="form">
           <label>Ввведите ответ об устранении</label>
           <clr-textarea-container class="clr-col-md-12 clr-col-12">
@@ -19,13 +22,9 @@
           </clr-textarea-container>
         </form>
       </div>
-
-
-
     </clr-wizard-page>
 
     <clr-wizard-page (clrWizardPageOnCommit)="onCommit()">
-
         <ng-template clrPageTitle>Добавление файлов</ng-template>
         <div class="" [className]="dragOver? 'upload-box-content card over':'upload-box-content card'">
           <div class="drop-container" ngFileDrop [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">

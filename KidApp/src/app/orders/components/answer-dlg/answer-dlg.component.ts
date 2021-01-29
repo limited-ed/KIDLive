@@ -82,10 +82,7 @@ export class AnswerDlgComponent implements OnInit {
   ngOnInit(): void {}
 
   onCancel() {
-    if (this.uploadFiles.length > 0) {
       this.onFinish();
-      return;
-    }
   }
 
   onCommit() {
@@ -110,6 +107,7 @@ export class AnswerDlgComponent implements OnInit {
   }
 
   onFinish() {
+    this.visible = false;
     this.wizard.reset();
     this.form.reset();
     this.uploadFiles = [];

@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
 import { Order } from 'models/order';
 import { FormBuilder, Validators } from '@angular/forms';
 import { mapToModel, OrderService } from 'core';
+import { Configuration } from 'app.constants';
 import { ClrLoadingState } from '@clr/angular';
 
 @Component({
@@ -30,7 +32,9 @@ export class ViewDlgComponent implements OnInit {
     return false;
   }
 
-  constructor(private orderService: OrderService, private fb: FormBuilder) {
+  url = Configuration.Server + '/api/file';
+
+  constructor(private orderService: OrderService, private http: HttpClient, private fb: FormBuilder) {
 
   }
 
@@ -52,6 +56,37 @@ export class ViewDlgComponent implements OnInit {
     this.visible = false;
     this.form.reset();
     this.visibleChange.emit(false);
+  }
+
+  getDowloadLink(id: number){
+    this.http.get(this.url + '/' + id, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('id_token'),
+      },
+      responseType: 'blob'
+    }).subscribe((res) => {
+      let url = window.URL.createObjectURL(res);
+      let pwa = window.open(url);
+      console.log(res);
+    });
+  }
+
+  deleteFile(id: number){
+    this.http
+    .delete(
+      this.url + '/' + id,
+      {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('id_token'),
+        },
+      }
+    )
+    .subscribe({
+      complete: (() => {
+        let i = this.order.orderFiles.findIndex(f => f.id === id);
+        this.order.orderFiles.splice(i, 1);
+      }).bind(this),
+    });
   }
 
   private saveOrder(){
