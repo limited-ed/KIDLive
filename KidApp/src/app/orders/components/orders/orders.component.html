@@ -35,7 +35,7 @@
       <clr-dg-cell>{{order.startDate | date}}</clr-dg-cell>
       <clr-dg-cell>{{order.endDate | date}}</clr-dg-cell>
       <clr-dg-cell>{{order.division.title}}</clr-dg-cell>
-      <clr-dg-cell>{{order.statusId | statustitle}}
+      <clr-dg-cell>{{order.status.title}}
         <clr-tooltip>
           <clr-icon clrTooltipTrigger shape="info-circle" size="16" aria-label="Uniq tooltip 1"></clr-icon>
           <clr-tooltip-content clrPosition="top-right" clrSize="xs" *clrIfOpen>
