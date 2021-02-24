@@ -36,7 +36,7 @@ export class AnswerDlgComponent implements OnInit {
   set order(order: Order) {
     this._order = order;
     if (order) {
-      this.form.setValue({ answer: this.order.answer });
+      this.form.setValue({ answer: order.answer });
     }
   }
   private _order: Order;
@@ -87,7 +87,8 @@ export class AnswerDlgComponent implements OnInit {
 
   onCommit() {
     this.order.answer = this.form.get('answer').value;
-    this._order.statusId = 3;
+    this.order.statusId = 3;
+    this.order.status = null;
     this.orderSrv.edit(this.order).subscribe(
       (ok) => {
         this.orderChange.emit(this.order);
