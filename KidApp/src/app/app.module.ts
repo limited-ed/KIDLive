@@ -9,7 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
 import { CoreModule } from 'core/core.module';
 import { registerLocaleData } from '@angular/common';
+import { ClarityModule } from '@clr/angular';
 
+import '@cds/core/icon/register.js';
 
 export function getToken() {
   return localStorage.getItem('id_token');
@@ -32,7 +34,8 @@ registerLocaleData(localeRu, 'ru');
         tokenGetter: getToken,
         whitelistedDomains: ['10.109.225.188:80', 'localhost:5000', '10.109.225.151:5000']
       }
-    })
+    }),
+    ClarityModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' }

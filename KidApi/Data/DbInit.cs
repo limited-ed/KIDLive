@@ -18,11 +18,9 @@ namespace KidApi.Data
             {
                 if (!_context.Divisions.Any())
                 {
-                  /*  _context.Divisions.Add( new Division { Title = "Подразделение 1"});
-                    _context.Divisions.Add( new Division { Title = "Подразделение 2"});
-                    _context.Divisions.Add( new Division { Title = "Подразделение 3"});
-                    _context.Divisions.Add( new Division { Title = "Подразделение 4"});
-                    _context.SaveChanges();*/
+                    _context.Divisions.Add( new Division { Title = "Подразделение 1"});
+
+                    _context.SaveChanges();
                 }
                 if (!_context.Users.Any())
                 {

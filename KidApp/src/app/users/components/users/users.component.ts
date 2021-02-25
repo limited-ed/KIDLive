@@ -27,6 +27,7 @@ export class UsersComponent implements OnInit {
     showEdit = false;
 
     editUserSubscription: Observable<UserEditResult>;
+    selected: User;
 
 
     constructor(private service: UsersService, private dService: DivisionService, private messageBus: MessageBusService) {

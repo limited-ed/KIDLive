@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./login/login.module').then(module => module.LoginModule)}
 ];
 
-export const AppRoutingModule = RouterModule.forRoot(routes);
+export const AppRoutingModule = RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' });
 
 /*
 
